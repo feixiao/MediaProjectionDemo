@@ -45,6 +45,7 @@ public class ScreenCaptureActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
+                // 开启Service
                 startService(com.mtsahakis.mediaprojectiondemo.ScreenCaptureService.getStartIntent(this, resultCode, data));
             }
         }
@@ -54,6 +55,7 @@ public class ScreenCaptureActivity extends Activity {
     private void startProjection() {
         MediaProjectionManager mProjectionManager =
                 (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
+
         startActivityForResult(mProjectionManager.createScreenCaptureIntent(), REQUEST_CODE);
     }
 

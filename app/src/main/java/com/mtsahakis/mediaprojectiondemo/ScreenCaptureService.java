@@ -181,6 +181,8 @@ public class ScreenCaptureService extends Service {
         File externalFilesDir = getExternalFilesDir(null);
         if (externalFilesDir != null) {
             mStoreDir = externalFilesDir.getAbsolutePath() + "/screenshots/";
+            Log.i(TAG,mStoreDir);
+
             File storeDirectory = new File(mStoreDir);
             if (!storeDirectory.exists()) {
                 boolean success = storeDirectory.mkdirs();
@@ -211,6 +213,7 @@ public class ScreenCaptureService extends Service {
             // create notification
             Pair<Integer, Notification> notification = NotificationUtils.getNotification(this);
             startForeground(notification.first, notification.second);
+
             // start projection
             int resultCode = intent.getIntExtra(RESULT_CODE, Activity.RESULT_CANCELED);
             Intent data = intent.getParcelableExtra(DATA);
